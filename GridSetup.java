@@ -224,7 +224,6 @@ public class GridSetup extends JPanel implements MouseListener, KeyListener {
 				
 				//shows remaining mines on the board when you click a mine
 				if(boxArray[col][row].isMine()&&boxArray[col][row].isFlagged()==false) {
-					winLabel.setText("You lose");
 					for(int i=0;i<boxArray.length;i++) {
 						for(int j=0;j<boxArray[col].length;j++) {
 							if(boxArray[i][j].isMine()) {
