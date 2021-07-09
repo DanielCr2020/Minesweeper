@@ -28,11 +28,11 @@ public class MinesweeperDriver extends JFrame implements KeyListener {
 				gridHeight=s.nextInt();
 				System.out.print("Input width: ");
 				gridWidth=s.nextInt();
-				System.out.print("Input number of mines: ");
+				System.out.println("Input number of mines: ");
 				noOfMines=s.nextInt();
 				while(noOfMines<0||noOfMines>gridHeight*gridWidth) {
 					System.out.print("Invalid number of mines. Try again: ");
-					//noOfMines=s.nextInt();
+					noOfMines=s.nextInt();
 				}
 				
 				GridSetup minesweeperGrid=new GridSetup(gridWidth, gridHeight, noOfMines);
@@ -41,7 +41,7 @@ public class MinesweeperDriver extends JFrame implements KeyListener {
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.pack();
 				frame.setVisible(true);
-				frame.setMinimumSize(new Dimension(700,500));
+				frame.setMinimumSize(new Dimension(700,600));
 				frame.setContentPane(minesweeperGrid);
 			}
 		});

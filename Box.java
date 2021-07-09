@@ -52,38 +52,33 @@ public class Box extends JPanel{
 		}
 	}
 	
-	public void flag(Graphics g) {
-		g.setColor(Color.yellow);
-		g.fillRect(2+inThisCol*BOX_SIZE, 2+inThisRow*BOX_SIZE, BOX_SIZE-3, BOX_SIZE-3); //x, y, width, height
-		flagged=true;
+	public void flag(Graphics g, boolean flagged2) {
+		if(flagged2) {
+			g.setColor(Color.yellow);
+			flagged=true;
+		}
+		if(flagged2==false) {
+			g.clearRect(2+inThisCol*BOX_SIZE, 2+inThisRow*BOX_SIZE, BOX_SIZE-3, BOX_SIZE-3);
+			g.setColor(Color.darkGray);
+			
+			flagged=false;
+		}
+		g.fillRect(2+inThisCol*BOX_SIZE, 2+inThisRow*BOX_SIZE, BOX_SIZE-3, BOX_SIZE-3);
 	}
 	
-	public void markAsCorrectlyFlagged(Graphics g) {
-		g.setColor(Color.orange);
+	public void markAsCorrectlyFlagged(Graphics g, boolean correct) {
+		if(correct)
+			g.setColor(Color.orange);
+		else
+			g.setColor(Color.pink);
 		g.fillRect(2+inThisCol*BOX_SIZE, 2+inThisRow*BOX_SIZE, BOX_SIZE-3, BOX_SIZE-3);
 		//g.fillRect(inThisCol*BOX_SIZE+BOX_SIZE/4, inThisRow*BOX_SIZE+BOX_SIZE/4, (3*BOX_SIZE/4)-3, (3*BOX_SIZE/4)-3); //x, y, width, height
 	}
 	
-	public void markAsIncorrectlyFlagged(Graphics g) {
-		g.setColor(Color.pink);
-		g.fillRect(2+inThisCol*BOX_SIZE, 2+inThisRow*BOX_SIZE, BOX_SIZE-3, BOX_SIZE-3);
-		//g.fillRect(inThisCol*BOX_SIZE+BOX_SIZE/4, inThisRow*BOX_SIZE+BOX_SIZE/4, (3*BOX_SIZE/4)-3, (3*BOX_SIZE/4)-3); //x, y, width, height
-	}
-	
-	public void unflag(Graphics g) {
-		g.clearRect(2+inThisCol*BOX_SIZE, 2+inThisRow*BOX_SIZE, BOX_SIZE-3, BOX_SIZE-3);
-		g.setColor(Color.darkGray);
-		g.fillRect(2+inThisCol*BOX_SIZE, 2+inThisRow*BOX_SIZE, BOX_SIZE-3, BOX_SIZE-3);
-		flagged=false;
-	}
 	
 	public void setAdjacentMines(int adjacentMines2) {
 		adjacentMines=adjacentMines2;
 	}
-	
-	/*public void setClicked() {
-		wasClicked=true;
-	}*/
 	
 	public boolean isFlagged() {
 		return flagged;
