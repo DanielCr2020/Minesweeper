@@ -1,6 +1,6 @@
 # Minesweeper
 
-# Daniel Craig
+Daniel Craig
 
 My Minesweeper that I programmed for fun over the summer to challenge myself and learn some more programming techniques.
 
