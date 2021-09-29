@@ -1,4 +1,7 @@
 # Minesweeper
+
+# Daniel Craig
+
 My Minesweeper that I programmed for fun over the summer to challenge myself and learn some more programming techniques.
 
 This is my first GitHub repository so I apologize if it does not look like I know what I am doing.
