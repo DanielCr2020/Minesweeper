@@ -13,13 +13,14 @@ import javax.swing.JPanel;
 
 public class GridSetup extends JPanel implements MouseListener, KeyListener {
 
-	final int BOX_SIZE=25;
+	//final int boxSize=20;
 	
 	int gridWidth;
 	int gridHeight;
 	int noOfMines;
 	int placedFlags;
 	int revealedBoxes;
+	int boxSize;
 	Integer adjacentMines;
 	Random r;
 	
@@ -29,10 +30,12 @@ public class GridSetup extends JPanel implements MouseListener, KeyListener {
 	
 	Box[][] boxArray;
 	
-	public GridSetup(int gridWidth, int gridHeight, int noOfMines) {
+	public GridSetup(int gridWidth, int gridHeight, int noOfMines, int boxSize) {
 		this.gridWidth=gridWidth;
 		this.gridHeight=gridHeight;
 		this.noOfMines=noOfMines;
+		this.boxSize=boxSize;
+		
 		
 		adjacentMines=0;
 		placedFlags=0;
@@ -51,13 +54,13 @@ public class GridSetup extends JPanel implements MouseListener, KeyListener {
 	public void win(Graphics g) {
 		g.setFont(new Font("Arial", Font.PLAIN, 14));
 		g.setColor(Color.green);
-		g.drawString("You win!", 2, 10+gridHeight*BOX_SIZE);
+		g.drawString("You win!", 2, 10+gridHeight*boxSize);
 	}
 	
 	public void lose(Graphics g) {
 		g.setFont(new Font("Arial", Font.PLAIN, 14));
 		g.setColor(Color.red);
-		g.drawString("You lose", 2, 10+gridHeight*BOX_SIZE);
+		g.drawString("You lose", 2, 10+gridHeight*boxSize);
 	}
 	
 	public void gameSetup(Graphics g) {
@@ -68,12 +71,12 @@ public class GridSetup extends JPanel implements MouseListener, KeyListener {
 		//loop to draw grid
 		for(int i=0;i<gridWidth;i++) {
 			for(int j=0;j<gridHeight;j++) {
-				boxArray[i][j]=new Box(i,j,false,false,false,false,0,BOX_SIZE);
+				boxArray[i][j]=new Box(i,j,false,false,false,false,0,boxSize);
 				boxArray[i][j].draw(g, i, j);	//each box in the array calls its own draw method.
 			}
 		}
 		g.setColor(Color.black);
-		g.fillRect(2, gridHeight*BOX_SIZE, 60, 17);
+		g.fillRect(2, gridHeight*boxSize, 60, 17);
 		
 		//adding mines
 		int noOfAddedMines=0;
@@ -124,20 +127,20 @@ public class GridSetup extends JPanel implements MouseListener, KeyListener {
 		gameSetup(g);
 		g.setColor(Color.black);
 		g.setFont(new Font("Arial", Font.PLAIN, 14));
-		g.drawString("Left click to reveal a box", 2, 30+gridHeight*BOX_SIZE);
-		g.drawString("Right click to flag and unflag a box", 2, 44+gridHeight*BOX_SIZE);
-		g.drawString("Correctly flagged mines will be marked orange", 2, 58+gridHeight*BOX_SIZE);
-		g.drawString("Incorrectly flagged mines will be marked pink", 2, 72+gridHeight*BOX_SIZE);
-		g.drawString("Press r to restart", 2, 86+gridHeight*BOX_SIZE);
+		g.drawString("Left click to reveal a box", 2, 30+gridHeight*boxSize);
+		g.drawString("Right click to flag and unflag a box", 2, 44+gridHeight*boxSize);
+		g.drawString("Correctly flagged mines will be marked orange", 2, 58+gridHeight*boxSize);
+		g.drawString("Incorrectly flagged mines will be marked pink", 2, 72+gridHeight*boxSize);
+		g.drawString("Press r to restart", 2, 86+gridHeight*boxSize);
 	}
 	
 	public void mousePressed(MouseEvent e) {
 		x=e.getX();	
 		y=e.getY();
-		if(x>0&&x<BOX_SIZE*gridWidth&&y>0&&y<BOX_SIZE*gridHeight) {
+		if(x>0&&x<boxSize*gridWidth&&y>0&&y<boxSize*gridHeight) {
 			int col, row;
-			col=(int)Math.floor((x)/BOX_SIZE);
-			row=(int)Math.floor((y)/BOX_SIZE);
+			col=(int)Math.floor((x)/boxSize);
+			row=(int)Math.floor((y)/boxSize);
 			if(e.getButton()==MouseEvent.BUTTON1) {	//left click
 				if(boxArray[col][row].isFlagged()==false&&boxArray[col][row].isRevealed()==false&&boxArray[col][row].isMine()==false) {					
 					revealBoxes(boxArray,col,row);					
